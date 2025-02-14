@@ -1,6 +1,8 @@
 locals {
   nxos                    = try(local.model.nxos, {})
   global                  = try(local.nxos.global, [])
+  username                = try(local.nxos.username, [])
+  password                = try(local.nxos.username, [])
   devices                 = try(local.nxos.devices, [])
   device_groups           = try(local.nxos.device_groups, [])
   interface_groups        = try(local.nxos.interface_groups, [])
@@ -46,6 +48,13 @@ locals {
   device_config = { for device, config in local.raw_device_config :
     device => yamldecode(templatestring(config, local.device_variables[device]))
   }
+}
+
+
+provider "nxos" {
+  username = local.username
+  password = local.password
+  devices  = local.devices
 }
 
 resource "nxos_save_config" "save_config" {
