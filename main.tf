@@ -48,10 +48,6 @@ locals {
   }
 }
 
-provider "nxos" {
-  devices = local.devices
-}
-
 resource "nxos_save_config" "save_config" {
   for_each = { for device in local.devices : device.name => device if var.save_config }
   device   = each.key
