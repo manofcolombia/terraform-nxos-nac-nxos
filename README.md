@@ -41,7 +41,7 @@ module "nxos" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8.0 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.3.0 |
-| <a name="requirement_nxos"></a> [nxos](#requirement\_nxos) | >= 0.5.3 |
+| <a name="requirement_nxos"></a> [nxos](#requirement\_nxos) | >= 0.5.9 |
 | <a name="requirement_utils"></a> [utils](#requirement\_utils) | >= 0.2.6 |
 ## Inputs
 
@@ -111,10 +111,14 @@ module "nxos" {
 | [nxos_hmm_interface.hmm_interface](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/hmm_interface) | resource |
 | [nxos_ipv4_interface.ethernet_ipv4_interface](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface) | resource |
 | [nxos_ipv4_interface.loopback_ipv4_interface](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface) | resource |
+| [nxos_ipv4_interface.port_channel_ipv4_interface](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface) | resource |
 | [nxos_ipv4_interface.svi_ipv4_interface](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface) | resource |
 | [nxos_ipv4_interface_address.ethernet_ipv4_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
+| [nxos_ipv4_interface_address.ethernet_ipv4_secondary_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
 | [nxos_ipv4_interface_address.loopback_ipv4_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
 | [nxos_ipv4_interface_address.loopback_ipv4_secondary_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
+| [nxos_ipv4_interface_address.port_channel_ipv4_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
+| [nxos_ipv4_interface_address.port_channel_ipv4_secondary_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
 | [nxos_ipv4_interface_address.svi_ipv4_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
 | [nxos_ipv4_interface_address.svi_ipv4_secondary_interface_address](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_interface_address) | resource |
 | [nxos_ipv4_prefix_list_rule.ipv4_prefix_list_rule](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/ipv4_prefix_list_rule) | resource |
@@ -144,6 +148,9 @@ module "nxos" {
 | [nxos_pim_static_rp_group_list.pim_static_rp_group_list](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/pim_static_rp_group_list) | resource |
 | [nxos_pim_static_rp_policy.pim_static_rp_policy](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/pim_static_rp_policy) | resource |
 | [nxos_pim_vrf.pim_vrf](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/pim_vrf) | resource |
+| [nxos_port_channel_interface.port_channel_interface](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/port_channel_interface) | resource |
+| [nxos_port_channel_interface_member.port_channel_interface_member](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/port_channel_interface_member) | resource |
+| [nxos_port_channel_interface_vrf.port_channel_interface_vrf](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/port_channel_interface_vrf) | resource |
 | [nxos_route_map_rule.route_map_rule](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/route_map_rule) | resource |
 | [nxos_route_map_rule_entry.route_map_rule_entry](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/route_map_rule_entry) | resource |
 | [nxos_route_map_rule_entry_match_route.route_map_rule_entry_match_route](https://registry.terraform.io/providers/CiscoDevNet/nxos/latest/docs/resources/route_map_rule_entry_match_route) | resource |
