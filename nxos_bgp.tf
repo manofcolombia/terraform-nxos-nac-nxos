@@ -71,23 +71,23 @@ locals {
           device                                 = device.name
           vrf                                    = vrf.vrf
           address_family                         = local.address_family_names_map[af.address_family]
-          advertise_l2vpn_evpn                   = try(af.advertise_l2vpn_evpn, "disabled")
-          advertise_only_active_routes           = try(af.advertise_only_active_routes, "disabled")
-          advertise_physical_ip_for_type5_routes = try(af.advertise_physical_ip_for_type5_routes, "disabled")
-          critical_nexthop_timeout               = try(af.critical_nexthop_timeout, "crit")
-          default_information_originate          = try(af.default_information_originate, "disabled")
-          max_ecmp_paths                         = try(af.max_ecmp_paths, 1)
-          max_external_ecmp_paths                = try(af.max_external_ecmp_paths, 1)
-          max_external_internal_ecmp_paths       = try(af.max_external_internal_ecmp_paths, 1)
-          max_local_ecmp_paths                   = try(af.max_local_ecmp_paths, 1)
-          max_mixed_ecmp_paths                   = try(af.max_mixed_ecmp_paths, 1)
-          next_hop_route_map_name                = try(af.next_hop_route_map_name, "")
-          non_critical_nexthop_timeout           = try(af.non_critical_nexthop_timeout, "noncrit")
-          prefix_priority                        = try(af.prefix_priority, "none")
-          retain_rt_all                          = try(af.retain_rt_all, "disabled")
-          table_map_route_map_name               = try(af.table_map_route_map_name, "")
-          vni_ethernet_tag                       = try(af.vni_ethernet_tag, "disabled")
-          wait_igp_converged                     = try(af.wait_igp_converged, "disabled")
+          advertise_l2vpn_evpn                   = try(af.advertise_l2vpn_evpn, lookup(local.defaults.nxos.configuration.routing.bgp.vrfs.address_families, af.address_family, {}).advertise_l2vpn_evpn, false) ? "enabled" : "disabled",
+          advertise_only_active_routes           = try(af.advertise_only_active_routes, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.advertise_only_active_routes, false) ? "enabled" : "disabled",
+          advertise_physical_ip_for_type5_routes = try(af.advertise_physical_ip_for_type5_routes, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.advertise_physical_ip_for_type5_routes, false) ? "enabled" : "disabled",
+          critical_nexthop_timeout               = try(af.critical_nexthop_timeout, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.critical_nexthop_timeout,"crit")
+          default_information_originate          = try(af.default_information_originate, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.default_information_originate, false) ? "enabled" : "disabled",
+          max_ecmp_paths                         = try(af.max_ecmp_paths, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.max_ecmp_paths, 1)
+          max_external_ecmp_paths                = try(af.max_external_ecmp_paths, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.max_external_ecmp_paths, 1)
+          max_external_internal_ecmp_paths       = try(af.max_external_internal_ecmp_paths, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.max_external_internal_ecmp_paths, 1)
+          max_local_ecmp_paths                   = try(af.max_local_ecmp_paths, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.max_local_ecmp_paths, 1)
+          max_mixed_ecmp_paths                   = try(af.max_mixed_ecmp_paths, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.max_mixed_ecmp_paths, 1)
+          next_hop_route_map_name                = try(af.next_hop_route_map_name, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.next_hop_route_map_name,"")
+          non_critical_nexthop_timeout           = try(af.non_critical_nexthop_timeout, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.non_critical_nexthop_timeout,"noncrit")
+          prefix_priority                        = try(af.prefix_priority, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.prefix_priority, "none")
+          retain_rt_all                          = try(af.retain_rt_all, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.retain_rt_all, false) ? "enabled" : "disabled",
+          table_map_route_map_name               = try(af.table_map_route_map_name, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.able_map_route_map_name, "")
+          vni_ethernet_tag                       = try(af.vni_ethernet_tag, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.vni_ethernet_tag, false) ? "enabled" : "disabled",
+          wait_igp_converged                     = try(af.wait_igp_converged, local.defaults.nxos.configuration.routing.bgp.vrfs.address_families.wait_igp_converged, false) ? "enabled" : "disabled",
         }
       ]
     ]
@@ -133,7 +133,7 @@ locals {
               address_family = local.address_family_names_map[af.address_family]
               prefix         = prefix.prefix
               route_map      = try(prefix.route_map, null)
-              evpn           = try(prefix.evpn, "disabled")
+              evpn           = try(prefix.evpn, false) ? "enabled" : "disabled",
             }
           ]
         ]
